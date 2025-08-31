@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wextra -g   CMakeFiles/chess.dir/src/main.cpp.o CMakeFiles/chess.dir/src/helper.cpp.o CMakeFiles/chess.dir/src/position.cpp.o CMakeFiles/chess.dir/src/magic.cpp.o CMakeFiles/chess.dir/src/moves.cpp.o  -o chess 

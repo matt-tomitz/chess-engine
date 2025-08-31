@@ -1,0 +1,3 @@
+/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess/build/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess/build/CMakeFiles/chess.dir
