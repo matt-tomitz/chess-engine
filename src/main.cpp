@@ -9,5 +9,9 @@ int main()
     PositionManager pm;
     pm.printGameBoard();
 
+    
+    std::cout << "Press Enter to exit...";
+    std::cin.get();
+
     return 0;
 }

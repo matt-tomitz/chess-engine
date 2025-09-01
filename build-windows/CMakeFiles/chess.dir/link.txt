@@ -1,0 +1,3 @@
+/usr/bin/cmake -E remove -f CMakeFiles/chess.dir/objects.a
+/usr/bin/x86_64-w64-mingw32-ar cr CMakeFiles/chess.dir/objects.a @CMakeFiles/chess.dir/objects1.rsp
+/usr/bin/x86_64-w64-mingw32-g++ -Wall -Wextra -g  -static -static-libgcc -static-libstdc++ -Wl,--whole-archive CMakeFiles/chess.dir/objects.a -Wl,--no-whole-archive  -o chess.exe -Wl,--out-implib,libchess.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/chess.dir/linklibs.rsp

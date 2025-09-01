@@ -1,64 +1,39 @@
-from PIL.Image import init
-from values import DARK, LIGHT, coverageColors
-from pieces import Piece, createPiece
 
 
+ranks = ["1", "2", "3", "4", "5", "6", "7", "8"]
+files = ["a", "b", "c", "d", "e", "f", "g", "h"]
 
 class Square:
-    def __init__(self, board, widget, x, y, char: str):
+    def __init__(self, board, widget, square):
         self.board = board
         self.widget = widget #reference to the widget object representing that square
-        self.color = LIGHT if (x+y)%2 == 0 else DARK
-        self.x = x
-        self.y = y
-        self.occupyingPiece = createPiece(board, char, x, y)
-        self.attackingSquares = set()
+        self.square = square
     
-    def addAttacker(self, square):
-        self.attackingSquares.add(square)
-        self.updateTerritory()
+    def getCoordinates(self):
+        return files[self.square % 8] + ranks[self.square // 8]
     
-    def removeAttacker(self, square):
-        self.attackingSquares.remove(square)
-        self.updateTerritory()
-
-    def updateAttackers(self):
-        attackers = list(self.attackingSquares)
-        for attacker in attackers:
-            self.board.getPiece(attacker).ping()
+    def clear(self):
+        self.widget["image"] = self.board.images["0"]
     
-    def updateTerritory(self):
-        value = 0
-        for sq in self.attackingSquares:
-            piece = self.board.getSquare(sq).occupyingPiece
-            value += piece.offset
+    def setPiece(self, char):
+        self.widget["image"] = self.board.images[char]
+    
+        
 
-        # self.widget["bg"] = coverageColors[value]
 
-    def getEnumSquare(self):
-        if (self.y < 4):
-            y = self.y + (2 * (3 - self.y)) + 1
-        else:
-            y = self.y - ((2 * (3 - (7 - self.y))) + 1)
-        return y*8 + self.x
+
         
 
 
 class Board:
-    def __init__(self):
+    def __init__(self, frame, images):
         self.board = {}
-        self.activePlayer = 'White'
+        self.frame = frame
+        self.images = images
+        self.activePlayer = 0
         self.selectedSquare = None
         self.lastMovedPiece = None
     
-    def getSquare(self, x, y=None)-> Square:
-        if y == None: #argument is a tuple
-            return self.board[(x[0], x[1])]
-        return self.board[(x,y)]
+    def getSquare(self, square)-> Square:
+        return self.board[square]
     
-    def getPiece(self, x, y=None)-> Piece:   
-        return self.getSquare(x,y).occupyingPiece
-
-
-
-

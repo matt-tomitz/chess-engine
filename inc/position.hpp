@@ -25,6 +25,7 @@ private:
     Position *oldPosition;
     int kingSquare[2];
     public:
+    Move lastMove;
     Position(std::string fen = defaultFEN);
     std::array<uint64_t, NUM_PIECES> GenerateBBFromFEN(std::string fen = defaultFEN);
     static uint64_t EvaluateMoves(Piece, int);
@@ -38,6 +39,9 @@ private:
     void printGameBoard(void);
     int getPieceOnSquare(int square);
     bool isLegal(void);
+
+    char getOccupancy(int);
+
 
     std::array<uint64_t, NUM_PIECES> getBitboards(void);
 //    uint64_t getPieceSet(PieceType pt) const {return pieceBB[pieceCode(pt)] & pieceBB[colorCode(pt)];}
@@ -56,9 +60,13 @@ class PositionManager
     public:
         Position position, backup;
         bool tryMove(int start, int end);
+        bool tryPromotion(int start, int end, int piece);
         int printGameBoard(void);
         std::vector<Move> generateAllLegalMoves(void);
         Move playRandomLegalMove(void);
+        char getOccupancy(int);
+        Move getLastMove(void);
+        void undoMove(void);
 
 };
 

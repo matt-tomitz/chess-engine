@@ -242,7 +242,7 @@ void initBishopAttacks()
         for (int index = 0; index < BISHOP_OCCUPANCIES; index++)
         {
             uint64_t occupancy = setOccupancy(index, bishopRelevantBits[square], bishopBlockersMask(square));
-            int magicIndex = (occupancy * bishopMagic[square]) >> (64 - bishopRelevantBits[square]);
+            uint64_t magicIndex = (occupancy * bishopMagic[square]) >> (64 - bishopRelevantBits[square]);
             bishopAttacks[square][magicIndex] = bishopAttacksOnTheFly(square, occupancy);
         }
     }
@@ -255,7 +255,7 @@ void initRookAttacks()
         for (int index = 0; index < ROOK_OCCUPANCIES; index++)
         {
             uint64_t occupancy = setOccupancy(index, rookRelevantBits[square], rookBlockersMask(square));
-            int magicIndex = (occupancy * rookMagic[square]) >> (64 - rookRelevantBits[square]);
+            uint64_t magicIndex = (occupancy * rookMagic[square]) >> (64 - rookRelevantBits[square]);
             rookAttacks[square][magicIndex] = rookAttacksOnTheFly(square, occupancy);
         }
     }
@@ -263,13 +263,13 @@ void initRookAttacks()
 
 uint64_t getBishopAttacks(int square, uint64_t occupancy)
 {
-    int magicIndex = ((occupancy & bishopBlockers[square]) * bishopMagic[square]) >> (64 - bishopRelevantBits[square]);
+    uint64_t magicIndex = ((occupancy & bishopBlockers[square]) * bishopMagic[square]) >> (64 - bishopRelevantBits[square]);
     return bishopAttacks[square][magicIndex];
 }
 
 uint64_t getRookAttacks(int square, uint64_t occupancy)
 {
-    int magicIndex = ((occupancy & rookBlockers[square]) * rookMagic[square]) >> (64 - rookRelevantBits[square]);
+    uint64_t magicIndex = ((occupancy & rookBlockers[square]) * rookMagic[square]) >> (64 - rookRelevantBits[square]);
     return rookAttacks[square][magicIndex];
 }
 

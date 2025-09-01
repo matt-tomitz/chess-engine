@@ -116,7 +116,6 @@ Position::Position(std::string fen)
 {
     initAttacks();
     pieceBB = GenerateBBFromFEN(fen);
-    oldPosition = NULL;
 }
 
 
@@ -234,6 +233,7 @@ std::vector<Move> Position::generateAllMoves()
     std::vector<Move> movesList;
 	for (int piece = Pawn; piece <= King; piece++)
 	{
+
 		uint64_t bb = pieceBB[piece] & pieceBB[side];
 		while (bb)
 		{
@@ -417,13 +417,6 @@ int Position::getPieceOnSquare(int square)
 }
 void Position::makeMove(Move move)
 {
-    if (oldPosition)
-    {
-        delete this->oldPosition;
-        oldPosition = NULL;
-    }
-    this->oldPosition = new Position(*this);
-
     //remove piece from start square
     clearBit(pieceBB[move.piece], move.start);
     clearBit(pieceBB[side], move.start);
@@ -559,18 +552,47 @@ bool Position::isLegal(void)
     return true;
 }
 
+char Position::getOccupancy(int square)
+{
+    uint64_t squareBB = (1ULL << square);
+    uint64_t occupancies = squareBB & (pieceBB[White] | pieceBB[Black]);
+    if (occupancies)
+    {
+        for (int piece = Pawn; piece <= King; piece++)
+        {
+            int pieceRep = (piece - Pawn);
+            if (squareBB & pieceBB[piece])
+            {
+                if (squareBB & pieceBB[Black])
+                {
+                    pieceRep += 6;
+                }
+                return pieceRepresentation[pieceRep];
+            }
+        }
+        throw std::invalid_argument("getOccupancy function failed to determine occupancy of square " + square);
+
+    }
+    else
+    {
+        return '0';
+    }
+}
 
 bool PositionManager::tryMove(int start, int end)
 {
     std::vector<Move> moves = position.generateAllMoves();
+    int move = 0;
     for (auto it = moves.begin(); it != moves.end(); it++)
     {
         if (it->start == start && it->end == end)
         {
+
             backup = position;
             position.makeMove(*it);
             if (position.isLegal())
             {
+                position.lastMove = *it;
                 return true;
             }
             else
@@ -581,6 +603,35 @@ bool PositionManager::tryMove(int start, int end)
         }        
     }
     return false;
+}
+
+bool PositionManager::tryPromotion(int start, int end, int promotion)
+{
+    std::vector<Move> moves = position.generateAllMoves();
+    for (auto it = moves.begin(); it != moves.end(); it++)
+    {
+        if (it->start == start && it->end == end && it->promotion == promotion)
+        {
+            backup = position;
+            position.makeMove(*it);
+            if (position.isLegal())
+            {
+                position.lastMove = *it;
+                return true;
+            }
+            else
+            {
+                position = backup;
+            }
+
+        }        
+    }
+    return false;
+}
+
+void PositionManager::undoMove(void)
+{
+    position = backup;
 }
 
 std::vector<Move> PositionManager::generateAllLegalMoves(void)
@@ -608,9 +659,20 @@ Move PositionManager::playRandomLegalMove(void)
     return move;
 }
 
+
 int PositionManager::printGameBoard(void)
 {
     position.printGameBoard();
     return 0;
+}
+
+char PositionManager::getOccupancy(int square)
+{
+    return position.getOccupancy(square);
+}
+
+Move PositionManager::getLastMove(void)
+{
+    return position.lastMove;
 }
 

@@ -23,6 +23,10 @@ inline void clearBit(uint64_t& bitboard, uint8_t square)
 
 inline int getPositionFromLSB(uint64_t bb)
 {
-    return ( __builtin_ffsl(bb) - 1);
+    // return ( __builtin_ffsl(bb) - 1);
+    if(bb)
+        return (countBits((bb & -bb) - 1));
+    else
+        return -1;
 }
 #endif

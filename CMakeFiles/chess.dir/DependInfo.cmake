@@ -4,12 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess/src/helper.cpp" "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess/CMakeFiles/chess.dir/src/helper.cpp.o"
-  "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess/src/magic.cpp" "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess/CMakeFiles/chess.dir/src/magic.cpp.o"
-  "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess/src/main.cpp" "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess/CMakeFiles/chess.dir/src/main.cpp.o"
-  "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess/src/moves.cpp" "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess/CMakeFiles/chess.dir/src/moves.cpp.o"
-  "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess/src/perft.cpp" "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess/CMakeFiles/chess.dir/src/perft.cpp.o"
-  "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess/src/position.cpp" "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess/CMakeFiles/chess.dir/src/position.cpp.o"
+  "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess-engine/src/helper.cpp" "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess-engine/CMakeFiles/chess.dir/src/helper.cpp.o"
+  "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess-engine/src/magic.cpp" "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess-engine/CMakeFiles/chess.dir/src/magic.cpp.o"
+  "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess-engine/src/main.cpp" "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess-engine/CMakeFiles/chess.dir/src/main.cpp.o"
+  "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess-engine/src/moves.cpp" "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess-engine/CMakeFiles/chess.dir/src/moves.cpp.o"
+  "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess-engine/src/perft.cpp" "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess-engine/CMakeFiles/chess.dir/src/perft.cpp.o"
+  "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess-engine/src/position.cpp" "/mnt/c/Users/matth/OneDrive/Documents/Projects/C++/chess-engine/CMakeFiles/chess.dir/src/position.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
